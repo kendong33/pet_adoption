@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .sidebar-link {
+        @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border border-transparent whitespace-nowrap;
+    }
+    .sidebar-link:hover {
+        @apply bg-violet-50 text-violet-700 border-violet-100;
+    }
+    .sidebar-link.active {
+        @apply bg-violet-100 text-violet-700 shadow-sm border-violet-200;
+    }
+    .sidebar-link svg {
+        @apply w-5 h-5 flex-shrink-0;
+    }
+    .pet-card {
+        @apply transition-all duration-300 ease-out;
+    }
+    .pet-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px -12px rgba(124,58,237,.12);
+    }
+}
