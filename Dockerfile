@@ -50,7 +50,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # Install frontend dependencies and build assets
 RUN npm install && npm run build
 
-# Clear Laravel caches
+# Clear Laravel caches during build so no stale data is baked into the image
 RUN php artisan config:clear \
     && php artisan route:clear \
     && php artisan view:clear
@@ -63,11 +63,8 @@ RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framewor
     && chown -R www-data:www-data storage bootstrap/cache public/uploads \
     && chmod -R 775 storage bootstrap/cache public/uploads
 
-# (Optional) Run migrations
-RUN php artisan migrate --force || true
-
 # Expose port
 EXPOSE 10000
 
-# Start Apache
-CMD ["apache2-foreground"]
+# Run migrations and start Apache using a bash execution string at container runtime
+CMD php artisan config:clear && php artisan migrate --force || true && apache2-foreground
