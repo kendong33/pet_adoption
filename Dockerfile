@@ -58,13 +58,18 @@ RUN php artisan config:clear \
 # Create storage symlink
 RUN php artisan storage:link || true
 
-# Fix permissions
-RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views bootstrap/cache public/uploads \
+# Fix permissions (Added storage/logs and explicit log file creation)
+RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache public/uploads \
+    && touch storage/logs/laravel.log \
     && chown -R www-data:www-data storage bootstrap/cache public/uploads \
-    && chmod -R 775 storage bootstrap/cache public/uploads
+    && chmod -R 775 storage bootstrap/cache public/uploads \
+    && chmod 664 storage/logs/laravel.log
 
 # Expose port
 EXPOSE 10000
+
+# Route logs to Render's terminal stream directly
+ENV LOG_CHANNEL=stderr
 
 # Run migrations and start Apache using a bash execution string at container runtime
 CMD php artisan config:clear && php artisan migrate --force || true && apache2-foreground
