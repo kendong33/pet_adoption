@@ -6,20 +6,31 @@
             <p class="text-gray-400 mt-1">{{ auth()->user()->isAdmin() ? 'Create, edit and manage all shelter pets' : 'Browse available pets for adoption' }}</p>
         </div>
         @if(auth()->user()->isAdmin())
-        <div class="flex gap-2">
-            @if(request('status') === 'Adopted')
+        <div class="flex flex-wrap gap-2">
+            @if(request('status') === 'Adopted' || request('status') === 'Archived')
                 <a href="{{ route('pets.index') }}"
                    class="inline-flex items-center gap-2 bg-white text-violet-700 text-sm font-semibold px-5 py-2.5 rounded-2xl shadow-sm border border-violet-200 hover:bg-violet-50 transition-all duration-300 shrink-0">
                     <svg class="w-4 h-4 text-violet-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
                     Back to Available Pets
                 </a>
-            @else
+            @endif
+
+            @if(request('status') !== 'Adopted')
                 <a href="{{ route('pets.index', ['status' => 'Adopted']) }}"
                    class="inline-flex items-center gap-2 bg-white text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-2xl shadow-sm border border-gray-200 hover:bg-gray-50 transition-all duration-300 shrink-0">
                     <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     View Adopted Pets
                 </a>
             @endif
+
+            @if(request('status') !== 'Archived')
+                <a href="{{ route('pets.index', ['status' => 'Archived']) }}"
+                   class="inline-flex items-center gap-2 bg-white text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-2xl shadow-sm border border-gray-200 hover:bg-gray-50 transition-all duration-300 shrink-0">
+                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+                    View Archives
+                </a>
+            @endif
+
             <a href="{{ route('pets.create') }}"
                class="inline-flex items-center gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-500 text-black text-sm font-semibold px-5 py-2.5 rounded-2xl shadow-lg border border-violet-700 hover:shadow-xl hover:shadow-violet-300 transition-all duration-300 hover:-translate-y-0.5 shrink-0">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
@@ -134,7 +145,15 @@
                                 Edit
                             </a>
                         @endif
-                        @if($pet->status !== 'Archived' && $pet->status !== 'Adopted')
+                        @if($pet->status === 'Archived')
+                        <form method="POST" action="{{ route('pets.unarchive', $pet) }}" class="flex-1">
+                            @csrf @method('PATCH')
+                            <button onclick="return confirm('Unarchive {{ $pet->name }}?')"
+                                    class="w-full text-sm font-semibold text-emerald-600 bg-emerald-50 hover:bg-emerald-100 py-2 rounded-xl border border-emerald-200 transition cursor-pointer">
+                                Unarchive
+                            </button>
+                        </form>
+                        @elseif($pet->status !== 'Adopted')
                         <form method="POST" action="{{ route('pets.archive', $pet) }}" class="flex-1">
                             @csrf @method('PATCH')
                             <button onclick="return confirm('Archive {{ $pet->name }}?')"

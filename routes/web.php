@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/pets/{pet}', [PetController::class, 'update'])->name('pets.update');
         Route::delete('/pets/{pet}', [PetController::class, 'destroy'])->name('pets.destroy');
         Route::patch('/pets/{pet}/archive', [PetController::class, 'archive'])->name('pets.archive');
+        Route::patch('/pets/{pet}/unarchive', [PetController::class, 'unarchive'])->name('pets.unarchive');
         
         // Categories CRUD
         Route::resource('categories', CategoryController::class)->except(['show']);

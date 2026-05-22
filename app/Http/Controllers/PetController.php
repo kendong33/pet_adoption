@@ -212,4 +212,14 @@ class PetController extends Controller
         return redirect()->route('pets.index')
             ->with('success', 'Pet archived successfully!');
     }
+
+    // ─────────────────────────────────────────────────────────────────
+    //  UNARCHIVE — Admin only; restore pet to Available
+    // ─────────────────────────────────────────────────────────────────
+    public function unarchive(Pet $pet): RedirectResponse
+    {
+        $pet->update(['status' => 'Available']);
+
+        return back()->with('success', 'Pet unarchived successfully!');
+    }
 }
