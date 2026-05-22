@@ -1,8 +1,8 @@
 <x-app-layout>
-<div class="py-8 px-4 sm:px-6 lg:px-8 border-2 border-gray-200"
+<div class="py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
         <!-- Header with Status -->
-        <div class="mb-8 border-2 border-gray-300">
+        <div class="mb-8">
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
                 <div>
                     <h1 class="text-4xl font-extrabold text-gray-800 mb-2">
@@ -18,9 +18,9 @@
             </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 border-2 border-gray-300">
+        <div class="grid md:grid-cols-3 gap-8">
             <!-- Pet Info (Sidebar) -->
-            <div class="md:col-span-1 border-2 border-gray-300">
+            <div class="md:col-span-1">
                 <div class="bg-white/80 backdrop-blur-xl rounded-3xl p-6 border-2 border-violet-100 shadow-xl sticky top-8">
                     <!-- Pet Image -->
                     <div class="mb-6 rounded-2xl overflow-hidden border-2 border-violet-100 shadow-inner">
@@ -67,7 +67,7 @@
             </div>
 
             <!-- Application Details -->
-            <div class="md:col-span-2 space-y-6 border-2 border-gray-300">
+            <div class="md:col-span-2 space-y-6">
                 <!-- Adopter Information -->
                 <div class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 border-2 border-violet-100 shadow-xl">
                     <h3 class="text-xl font-bold text-gray-800 mb-6">
@@ -91,7 +91,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-6 pt-6 border-t border-violet-100 border-2 border-gray-300">
+                    <div class="mt-6 pt-6 border-t border-violet-100">
                         <div class="bg-violet-50/50 rounded-2xl p-4 border border-violet-100">
                             <p class="text-violet-400 text-xs font-bold uppercase tracking-wider mb-2">Home Address</p>
                             <p class="text-gray-800">{{ $application->address }}</p>

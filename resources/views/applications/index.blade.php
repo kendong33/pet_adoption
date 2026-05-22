@@ -2,8 +2,8 @@
 <div class="py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
         <!-- Header -->
-        <div class="mb-12">
-            <div class="flex items-center justify-between mb-8">
+        <div class="mb-6">
+            <div class="flex items-center justify-between mb-6">
                 <div>
                     <h1 class="text-4xl font-extrabold text-gray-800 mb-2">
                         Adoption Applications
@@ -42,18 +42,18 @@
         </div>
 
         <!-- Search and Filter Bar -->
-        <div class="bg-white/70 backdrop-blur-sm rounded-3xl p-6 border-2 border-violet-100/80 shadow-sm mb-8">
-            <form method="GET" action="{{ route('applications.index') }}" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-white/70 backdrop-blur-sm rounded-3xl px-6 py-5 border-2 border-violet-100/80 shadow-sm mb-8">
+            <form method="GET" action="{{ route('applications.index') }}">
+                <div class="flex flex-wrap items-end gap-4">
                     <!-- Search -->
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Search</label>
+                    <div class="flex-1 min-w-[180px]">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Search</label>
                         <input type="text" name="search" value="{{ $search }}" placeholder="Adopter name or pet..." class="w-full rounded-xl border-2 border-violet-200 bg-white text-sm text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-violet-400 focus:border-violet-400 px-4 py-2.5 transition shadow-sm">
                     </div>
 
                     <!-- Status Filter -->
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Status</label>
+                    <div class="min-w-[160px]">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Status</label>
                         <select name="status" onchange="this.form.submit()" class="w-full rounded-xl border-2 border-violet-200 bg-white text-sm text-gray-700 focus:ring-2 focus:ring-violet-400 focus:border-violet-400 px-4 py-2.5 transition shadow-sm cursor-pointer">
                             <option value="Active" {{ $application_status === 'Active' ? 'selected' : '' }}>Active (Pending/Interview)</option>
                             <option value="All" {{ $application_status === 'All' ? 'selected' : '' }}>All Statuses</option>
@@ -65,8 +65,8 @@
                     </div>
 
                     <!-- Category Filter -->
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Pet Category</label>
+                    <div class="min-w-[160px]">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Pet Category</label>
                         <select name="category" onchange="this.form.submit()" class="w-full rounded-xl border-2 border-violet-200 bg-white text-sm text-gray-700 focus:ring-2 focus:ring-violet-400 focus:border-violet-400 px-4 py-2.5 transition shadow-sm cursor-pointer">
                             <option value="">All Categories</option>
                             @foreach ($categories as $cat)
@@ -76,9 +76,12 @@
                     </div>
 
                     <!-- Buttons -->
-                    <div class="flex items-end gap-2">
-                        <a href="{{ route('applications.index') }}" class="w-full text-center bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl border-0 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                            Reset Filters
+                    <div class="flex gap-2">
+                        <button type="submit" class="px-5 py-2.5 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-xl shadow-md transition">
+                            Search
+                        </button>
+                        <a href="{{ route('applications.index') }}" class="px-5 py-2.5 bg-white text-gray-600 hover:bg-gray-50 text-sm font-semibold rounded-xl border-2 border-gray-200 transition">
+                            Reset
                         </a>
                     </div>
                 </div>

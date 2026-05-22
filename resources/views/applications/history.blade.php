@@ -10,13 +10,13 @@
         </div>
 
         <!-- Filter Bar -->
-        <div class="bg-white/70 backdrop-blur-sm rounded-3xl p-6 border-2 border-violet-100/80 shadow-sm mb-8">
-            <form method="GET" action="{{ route('applications.history') }}" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-white/70 backdrop-blur-sm rounded-3xl px-6 py-5 border-2 border-violet-100/80 shadow-sm mb-8">
+            <form method="GET" action="{{ route('applications.history') }}">
+                <div class="flex flex-wrap items-end gap-4">
                     <!-- Status Filter -->
-                    <div>
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5">Status</label>
-                        <select name="status" onchange="this.form.submit()" class="w-full rounded-xl border-2 border-violet-100 bg-violet-50/30 text-sm text-gray-700 focus:ring-violet-300 focus:border-violet-300 px-4 py-2.5">
+                    <div class="min-w-[150px]">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Status</label>
+                        <select name="status" onchange="this.form.submit()" class="w-full rounded-xl border-2 border-violet-100 bg-white text-sm text-gray-700 focus:ring-violet-300 focus:border-violet-300 px-4 py-2.5 cursor-pointer">
                             <option value="">All Status</option>
                             <option value="Approved" {{ $application_status === 'Approved' ? 'selected' : '' }}>Approved</option>
                             <option value="Declined" {{ $application_status === 'Declined' ? 'selected' : '' }}>Declined</option>
@@ -24,20 +24,20 @@
                     </div>
 
                     <!-- Start Date -->
-                    <div>
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5">From Date</label>
-                        <input type="date" name="start_date" onchange="this.form.submit()" value="{{ $startDate }}" class="w-full rounded-xl border-2 border-violet-100 bg-violet-50/30 text-sm text-gray-700 focus:ring-violet-300 focus:border-violet-300 px-4 py-2.5">
+                    <div class="min-w-[170px]">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">From Date</label>
+                        <input type="date" name="start_date" onchange="this.form.submit()" value="{{ $startDate }}" class="w-full rounded-xl border-2 border-violet-100 bg-white text-sm text-gray-700 focus:ring-violet-300 focus:border-violet-300 px-4 py-2.5">
                     </div>
 
                     <!-- End Date -->
-                    <div>
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5">To Date</label>
-                        <input type="date" name="end_date" onchange="this.form.submit()" value="{{ $endDate }}" class="w-full rounded-xl border-2 border-violet-100 bg-violet-50/30 text-sm text-gray-700 focus:ring-violet-300 focus:border-violet-300 px-4 py-2.5">
+                    <div class="min-w-[170px]">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">To Date</label>
+                        <input type="date" name="end_date" onchange="this.form.submit()" value="{{ $endDate }}" class="w-full rounded-xl border-2 border-violet-100 bg-white text-sm text-gray-700 focus:ring-violet-300 focus:border-violet-300 px-4 py-2.5">
                     </div>
 
-                    <!-- Buttons -->
-                    <div class="flex items-end gap-2">
-                        <a href="{{ route('applications.history') }}" class="w-full text-center bg-white text-gray-500 text-sm font-semibold px-5 py-2.5 rounded-xl border-2 border-violet-100 hover:bg-violet-50 transition">
+                    <!-- Reset -->
+                    <div>
+                        <a href="{{ route('applications.history') }}" class="inline-block px-5 py-2.5 bg-white text-gray-600 hover:bg-gray-50 text-sm font-semibold rounded-xl border-2 border-gray-200 transition whitespace-nowrap">
                             Reset Filters
                         </a>
                     </div>
