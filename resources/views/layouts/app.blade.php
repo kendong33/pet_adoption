@@ -88,7 +88,7 @@
             <button @click="sidebarOpen=true" class="p-2 rounded-xl hover:bg-violet-50 text-gray-500">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
-            <span class="text-sm font-semibold text-gray-700">🐾 PetAdopt</span>
+            <span class="text-sm font-semibold text-gray-700">PetAdopt</span>
         </div>
 
         {{-- Content --}}
